@@ -7,6 +7,29 @@ var secretCodeWord1 = "lackadaisical"
 var secretCodeWord2 = "gobbledygook"
 // Expected output: "g0bbl3dyg00k"
 
+const codedMessage = (str) => {
+    let strMap = {
+        'a': '4',
+        'e': '3',
+        'i': '1',
+        'o': '0'
+    }
+    let strArr = str.split("")
+    let arr = strArr.map(char => {
+        if (char in strMap) {
+            return strMap[char]
+        }
+        else {
+            return char
+        }
+    })
+    return arr.join("")
+    
+    
+}
+
+console.log(codedMessage(secretCodeWord1));
+console.log(codedMessage(secretCodeWord2));
 
 
 
@@ -15,6 +38,12 @@ var secretCodeWord2 = "gobbledygook"
 
 var arrayOfWords = ["Apple", "Banana", "Plum", "Cherry", "Kiwi", "Peach"]
 // Expected output: "Apple" "Banana" "Peach"
+
+const aLetter = (array) => {
+    return array.filter(value => value.includes('a') || value.includes('A'))
+}
+console.log(aLetter(arrayOfWords));
+
 
 
 
@@ -28,3 +57,26 @@ var hand2 = [5, 5, 3, 3, 4]
 // Expected output: false
 var hand3 = [5, 5, 5, 5, 4]
 // Expected output: false
+
+const isFullHouse = (array) => {
+    let countObject = {}
+    for(let i=0; i < array.length; i++){
+        if (array[i] in countObject){
+            countObject[array[i]]++;
+            
+        }
+        else{
+            countObject[array[i]] = 1;
+        }
+    }
+    if(Object.values(countObject).indexOf(2) > -1 && Object.values(countObject).indexOf(3) > -1){
+        return true
+    }
+    else {
+        return false
+    }
+}
+
+console.log(isFullHouse(hand1))
+console.log(isFullHouse(hand2))
+console.log(isFullHouse(hand3))
